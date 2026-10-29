@@ -1,0 +1,152 @@
+{
+  "project": "Chola Power",
+  "sourceSite": "https://cholapower.in/",
+  "inspectedOn": "2026-10-29",
+  "rights": "The live site footer states: © 2025 Chola Power Private Limited. All rights reserved. robots.txt publishes Content-Signal: search=yes, ai-train=no, use=reference, and allows all user agents to crawl. No photographer credit or license authorizing republication of the logo, icons, share image, or gallery files was found. This portfolio does not claim ownership of the Chola Power brand or the underlying photography.",
+  "retrieved": [
+    {
+      "filename": "homepage-desktop.webp",
+      "localPath": "/images/projects/chola-power/homepage-desktop.webp",
+      "sourceUrl": "https://cholapower.in/",
+      "placement": "Chola Power case study, desktop homepage screenshot",
+      "format": "WebP, quality 90, 1440×900",
+      "notes": "Browser screenshot of the public homepage in a 1440×900 desktop viewport. The header email was hidden in the local capture so contact details are not republished. The production website was not modified. The hero is a CSS gradient."
+    },
+    {
+      "filename": "homepage-mobile.webp",
+      "localPath": "/images/projects/chola-power/homepage-mobile.webp",
+      "sourceUrl": "https://cholapower.in/",
+      "placement": "Chola Power case study, mobile homepage screenshot",
+      "format": "WebP, quality 90, 780×1688 from a 390×844 viewport at 2×",
+      "notes": "Browser screenshot of the public homepage at a phone size."
+    },
+    {
+      "filename": "gallery-desktop.webp",
+      "localPath": "/images/projects/chola-power/gallery-desktop.webp",
+      "sourceUrl": "https://cholapower.in/#gallery",
+      "placement": "Chola Power case study, desktop gallery screenshot",
+      "format": "WebP, quality 90, 1440×900",
+      "notes": "Browser screenshot of the public project gallery. Gallery photographs remain © 2025 Chola Power Private Limited."
+    },
+    {
+      "filename": "gallery-mobile.webp",
+      "localPath": "/images/projects/chola-power/gallery-mobile.webp",
+      "sourceUrl": "https://cholapower.in/#gallery",
+      "placement": "Chola Power case study, mobile gallery screenshot",
+      "format": "WebP, quality 90, 780×1688 from a 390×844 viewport at 2×",
+      "notes": "Browser screenshot of the public project gallery at a phone size."
+    }
+  ],
+  "notDownloaded": [
+    {
+      "sourceUrl": "https://cholapower.in/chola-power.png",
+      "intendedUse": "Header logo, alt text Chola Power Private Limited",
+      "reason": "All rights reserved. No reuse license was published. A hashed copy also exists at /assets/chola-power-Bx55ZRDM.png. The logo appears inside the screenshots above."
+    },
+    {
+      "sourceUrl": "https://cholapower.in/og-image.jpg",
+      "intendedUse": "Open Graph and Twitter share image, 1200×630, alt Chola Power Private Limited",
+      "reason": "All rights reserved. No reuse license was published. Source page: https://cholapower.in/"
+    },
+    {
+      "sourceUrl": "https://cholapower.in/favicon.ico",
+      "intendedUse": "Favicon",
+      "reason": "Brand mark. All rights reserved."
+    },
+    {
+      "sourceUrl": "https://cholapower.in/icon-16x16.png",
+      "intendedUse": "16×16 icon",
+      "reason": "Brand mark. All rights reserved."
+    },
+    {
+      "sourceUrl": "https://cholapower.in/icon-32x32.png",
+      "intendedUse": "32×32 icon",
+      "reason": "Brand mark. All rights reserved."
+    },
+    {
+      "sourceUrl": "https://cholapower.in/android-chrome-192x192.png",
+      "intendedUse": "192×192 icon",
+      "reason": "Brand mark. All rights reserved."
+    },
+    {
+      "sourceUrl": "https://cholapower.in/android-chrome-512x512.png",
+      "intendedUse": "512×512 icon and schema image",
+      "reason": "Brand mark. All rights reserved."
+    },
+    {
+      "sourceUrl": "https://cholapower.in/apple-touch-icon.png",
+      "intendedUse": "Apple touch icon",
+      "reason": "Brand mark. All rights reserved."
+    },
+    {
+      "sourceUrl": "https://cholapower.in/gallery/rooftop/1.webp",
+      "intendedUse": "Gallery card: Commercial Building Solar",
+      "reason": "Original photograph. All rights reserved. Visible in the gallery screenshots. Source page: https://cholapower.in/"
+    },
+    {
+      "sourceUrl": "https://cholapower.in/gallery/rooftop/2.webp",
+      "intendedUse": "Gallery card: Industrial Complex Solar",
+      "reason": "Original photograph. All rights reserved. Source page: https://cholapower.in/"
+    },
+    {
+      "sourceUrl": "https://cholapower.in/gallery/rooftop/3.webp",
+      "intendedUse": "Gallery card: Factory Rooftop System",
+      "reason": "Original photograph. All rights reserved. Source page: https://cholapower.in/"
+    },
+    {
+      "sourceUrl": "https://cholapower.in/gallery/rooftop/4.jpg",
+      "intendedUse": "Gallery card: Blue Building Solar",
+      "reason": "Original photograph. All rights reserved. Source page: https://cholapower.in/"
+    },
+    {
+      "sourceUrl": "https://cholapower.in/gallery/rooftop/5.jpg",
+      "intendedUse": "Gallery card: Rooftop Solar Panels",
+      "reason": "Original photograph. All rights reserved. Source page: https://cholapower.in/"
+    },
+    {
+      "sourceUrl": "https://cholapower.in/gallery/ground_mount/1.webp",
+      "intendedUse": "Gallery card: Solar Park Aerial View",
+      "reason": "Original photograph. All rights reserved. Source page: https://cholapower.in/"
+    },
+    {
+      "sourceUrl": "https://cholapower.in/gallery/ground_mount/2.webp",
+      "intendedUse": "Gallery card: Ground Solar Farm",
+      "reason": "Original photograph. All rights reserved. Source page: https://cholapower.in/"
+    },
+    {
+      "sourceUrl": "https://cholapower.in/gallery/ground_mount/3.webp",
+      "intendedUse": "Gallery card: Utility Scale Solar Farm",
+      "reason": "Original photograph. All rights reserved. Source page: https://cholapower.in/"
+    },
+    {
+      "sourceUrl": "https://cholapower.in/gallery/ground_mount/4.jpg",
+      "intendedUse": "Gallery card: Mega Solar Complex",
+      "reason": "Original photograph. All rights reserved. Source page: https://cholapower.in/"
+    },
+    {
+      "sourceUrl": "https://cholapower.in/clients/Cleanmax.jpg",
+      "intendedUse": "Client logo on the public homepage",
+      "reason": "Third-party mark. Not downloaded."
+    },
+    {
+      "sourceUrl": "https://cholapower.in/clients/Cleantech-Solar.png",
+      "intendedUse": "Client logo on the public homepage",
+      "reason": "Third-party mark. Not downloaded."
+    },
+    {
+      "sourceUrl": "https://cholapower.in/clients/Tata-Power-Solar.jpg",
+      "intendedUse": "Client logo on the public homepage",
+      "reason": "Third-party mark. Not downloaded."
+    },
+    {
+      "sourceUrl": "https://cholapower.in/clients/amplus.jpg",
+      "intendedUse": "Client logo on the public homepage",
+      "reason": "Third-party mark. Not downloaded."
+    },
+    {
+      "sourceUrl": "https://cholapower.in/clients/a.png",
+      "intendedUse": "Client logo on the public homepage",
+      "reason": "Third-party mark. Not downloaded. The same exclusion applies to /clients/b.png through /clients/k.png."
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "project": "Dharani Fitness",
+  "sourceSite": "https://dharanifitness.in/",
+  "capturedOn": "2026-10-29",
+  "rights": "The live site footer states: © 2026 Dharani Fitness Equipment. All rights reserved. These files are browser screenshots of public pages for a freelance portfolio case study. They do not transfer ownership of the brand, logo, or product photography. robots.txt disallows /admin/, /api/, /account, /checkout/, /continue, and /login. Those paths were not opened.",
+  "retrieved": [
+    {
+      "filename": "hero.webp",
+      "localPath": "/images/projects/dharani-fitness/hero.webp",
+      "sourceUrl": "https://dharanifitness.in/",
+      "placement": "Project card and case study, desktop homepage",
+      "format": "WebP, quality 90, 1440×900",
+      "notes": "Browser screenshot of the public homepage. Footer contact details were not included in the frame."
+    },
+    {
+      "filename": "hero-mobile.webp",
+      "localPath": "/images/projects/dharani-fitness/hero-mobile.webp",
+      "sourceUrl": "https://dharanifitness.in/",
+      "placement": "Case study, mobile homepage",
+      "format": "WebP, quality 90, 780×1688 from a 390×844 viewport at 2×",
+      "notes": "Browser screenshot of the public homepage at a phone size."
+    },
+    {
+      "filename": "catalogue.webp",
+      "localPath": "/images/projects/dharani-fitness/catalogue.webp",
+      "sourceUrl": "https://dharanifitness.in/products",
+      "placement": "Case study, catalogue",
+      "format": "WebP, quality 90, 1440×900",
+      "notes": "Browser screenshot of the public catalogue. The contact line on that page was hidden in the local capture."
+    },
+    {
+      "filename": "product-detail.webp",
+      "localPath": "/images/projects/dharani-fitness/product-detail.webp",
+      "sourceUrl": "https://dharanifitness.in/products/2-tier-dumbbell-rack",
+      "placement": "Case study, product page",
+      "format": "WebP, quality 90, 1440×900",
+      "notes": "Browser screenshot of one public product page."
+    },
+    {
+      "filename": "cart.webp",
+      "localPath": "/images/projects/dharani-fitness/cart.webp",
+      "sourceUrl": "https://dharanifitness.in/cart",
+      "placement": "Case study, empty public cart",
+      "format": "WebP, quality 90, 1440×900",
+      "notes": "Browser screenshot of the public cart while it was empty. This is not a checkout screenshot."
+    }
+  ],
+  "notRetrieved": [
+    {
+      "sourceUrl": "https://dharanifitness.in/checkout/",
+      "intendedUse": "Checkout screenshot",
+      "reason": "Disallowed by robots.txt. Not opened."
+    },
+    {
+      "sourceUrl": "https://dharanifitness.in/login",
+      "intendedUse": "Google sign-in screenshot",
+      "reason": "Disallowed by robots.txt. Not opened."
+    },
+    {
+      "sourceUrl": "https://dharanifitness.in/account",
+      "intendedUse": "Customer account and order history",
+      "reason": "Disallowed by robots.txt. Not opened."
+    },
+    {
+      "sourceUrl": "https://dharanifitness.in/admin/",
+      "intendedUse": "Admin dashboard",
+      "reason": "Disallowed by robots.txt. Not opened."
+    },
+    {
+      "sourceUrl": "https://dharanifitness.in/hero/dharani-hero-equipment.jpg",
+      "intendedUse": "Original homepage photograph",
+      "reason": "Left on the live site. The homepage screenshot shows it in place. All rights reserved."
+    },
+    {
+      "sourceUrl": "https://dharanifitness.in/brand/dharani-fitness-logo-header.png",
+      "intendedUse": "Header logo",
+      "reason": "Brand mark. Left on the live site. It appears inside the screenshots."
+    }
+  ]
+}
