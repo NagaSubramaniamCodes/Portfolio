@@ -4,8 +4,10 @@ import { useEffect, useId, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { mainNav } from "@/content/navigation";
 import { site } from "@/content/site";
+import { BackButton } from "@/components/ui/back-button";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -41,18 +43,22 @@ export function SiteHeader() {
   }, []);
 
   const closeMenu = () => setOpen(false);
+  const pathname = usePathname();
 
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-background">
       <div className="h-px bg-accent" aria-hidden="true" />
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-6 md:px-8">
-        <Link
-          href="/"
-          className="text-lg font-medium tracking-tight text-foreground"
-        >
-          <span className="sm:hidden">NG</span>
-          <span className="hidden sm:inline">{site.name}</span>
-        </Link>
+        <div className="flex min-w-0 items-center gap-3">
+          {pathname !== "/" ? <BackButton /> : null}
+          <Link
+            href="/"
+            className="truncate text-lg font-medium tracking-tight text-foreground"
+          >
+            <span className="sm:hidden">NG</span>
+            <span className="hidden sm:inline">{site.name}</span>
+          </Link>
+        </div>
 
         <nav className="hidden items-center gap-6 lg:flex" aria-label="Primary">
           {mainNav.map((item) => (

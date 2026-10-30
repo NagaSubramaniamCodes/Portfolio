@@ -70,11 +70,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
                 </li>
               ))}
             </ul>
-          ) : (
-            <p className="font-mono text-xs text-muted">
-              No public link is available.
-            </p>
-          )}
+          ) : null}
         </div>
       </div>
     </article>

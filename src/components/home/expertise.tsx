@@ -1,10 +1,12 @@
-import { skillGroups } from "@/data/skills";
+import { skillCategories } from "@/data/skills";
 import { Container } from "@/components/layout/container";
 import { SkillBoard } from "@/components/home/skill-board";
 import { SectionHeading } from "@/components/ui/section-heading";
 
 export function Expertise() {
-  const groups = skillGroups.filter((group) => group.items.length > 0);
+  const categories = skillCategories.filter((category) =>
+    category.groups.some((group) => group.items.length > 0),
+  );
 
   return (
     <section
@@ -16,11 +18,11 @@ export function Expertise() {
         <SectionHeading
           id="expertise-heading"
           eyebrow="Technical expertise"
-          title="Technologies named in the work."
-          description="Each name is tied to a featured project or to this site. The list is not a proficiency scale, and it does not include tools that are not on record."
+          title="Four areas of technical work."
+          description="Project and working-knowledge labels follow the featured work and this site."
         />
-        {groups.length > 0 ? (
-          <SkillBoard groups={groups} />
+        {categories.length > 0 ? (
+          <SkillBoard categories={categories} />
         ) : (
           <p className="mt-14 border border-line bg-surface px-6 py-10 text-muted">
             Technologies have not been listed.

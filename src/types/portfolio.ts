@@ -44,18 +44,28 @@ export type Service = {
   description: string;
 };
 
+export type SkillStatus = "project" | "working" | "unverified";
+
 export type Skill = {
   name: string;
-  /** Slugs of projects that name this tool. */
-  projectSlugs: readonly string[];
-  /** Used when the evidence is this site rather than a featured project. */
+  status: SkillStatus;
+  /** Slugs of projects that support this skill. Empty for unverified skills. */
+  projectSlugs?: readonly string[];
+  /** Short evidence note. Not a proficiency claim. */
   note?: string;
 };
 
-export type SkillGroup = {
+export type SkillSubgroup = {
   id: string;
   title: string;
   items: readonly Skill[];
+};
+
+export type SkillCategory = {
+  id: string;
+  title: string;
+  description: string;
+  groups: readonly SkillSubgroup[];
 };
 
 export type Credential = {

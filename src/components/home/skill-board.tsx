@@ -2,35 +2,38 @@
 
 import { useState } from "react";
 import {
-  Code,
+  ChartColumn,
   Database,
-  LayoutTemplate,
-  Server,
-  Ship,
+  Layers,
   Sparkles,
   type LucideIcon,
 } from "lucide-react";
 import { getProject } from "@/data/projects";
-import type { SkillGroup } from "@/types/portfolio";
+import type { Skill, SkillCategory, SkillStatus } from "@/types/portfolio";
 import { TextLink } from "@/components/ui/text-link";
 
-const groupIcons: Record<string, LucideIcon> = {
-  languages: Code,
-  frontend: LayoutTemplate,
-  backend: Server,
-  data: Database,
-  models: Sparkles,
-  delivery: Ship,
+const categoryIcons: Record<string, LucideIcon> = {
+  "full-stack": Layers,
+  analytics: ChartColumn,
+  ai: Sparkles,
+  "data-engineering": Database,
+};
+
+const statusLabel: Record<Exclude<SkillStatus, "unverified">, string> = {
+  project: "Project",
+  working: "Working knowledge",
 };
 
 type SkillBoardProps = {
-  groups: readonly SkillGroup[];
+  categories: readonly SkillCategory[];
 };
 
-export function SkillBoard({ groups }: SkillBoardProps) {
+export function SkillBoard({ categories }: SkillBoardProps) {
   const [active, setActive] = useState("all");
   const visible =
-    active === "all" ? groups : groups.filter((group) => group.id === active);
+    active === "all"
+      ? categories
+      : categories.filter((category) => category.id === active);
 
   return (
     <div className="mt-14">
@@ -45,57 +48,92 @@ export function SkillBoard({ groups }: SkillBoardProps) {
         >
           All
         </FilterButton>
-        {groups.map((group) => (
+        {categories.map((category) => (
           <FilterButton
-            key={group.id}
-            pressed={active === group.id}
-            onClick={() => setActive(group.id)}
+            key={category.id}
+            pressed={active === category.id}
+            onClick={() => setActive(category.id)}
           >
-            {group.title}
+            {category.title}
           </FilterButton>
         ))}
       </div>
-      <div className="mt-10 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-        {visible.map((group) => {
-          const Icon = groupIcons[group.id] ?? Code;
+      <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-1 font-mono text-[10px] tracking-[0.14em] text-muted uppercase">
+        <li>Project — named on a project or this site</li>
+        <li>Working knowledge — related, not a separately stated tool</li>
+      </ul>
+      <div className="mt-10 grid gap-4 lg:grid-cols-2">
+        {visible.map((category) => {
+          const Icon = categoryIcons[category.id] ?? Layers;
 
           return (
-            <section key={group.id} aria-labelledby={`${group.id}-skills`}>
+            <article
+              key={category.id}
+              aria-labelledby={`${category.id}-skills`}
+              className="border border-line bg-background p-6 md:p-8"
+            >
               <h3
-                id={`${group.id}-skills`}
+                id={`${category.id}-skills`}
                 className="flex items-center gap-2 font-mono text-xs tracking-[0.16em] text-accent uppercase"
               >
                 <Icon aria-hidden="true" className="size-3.5" />
-                {group.title}
+                {category.title}
               </h3>
-              <ul className="mt-4 space-y-2">
-                {group.items.map((skill) => (
-                  <li
-                    key={skill.name}
-                    className="border border-line bg-surface px-3 py-3 transition-colors hover:border-line-strong"
-                  >
-                    <p className="text-sm text-foreground">{skill.name}</p>
-                    <p className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted">
-                      {skill.note ? <span>{skill.note}</span> : null}
-                      {skill.projectSlugs.map((slug) => {
-                        const project = getProject(slug);
-                        if (!project) return null;
-
-                        return (
-                          <TextLink key={slug} href={`/projects/${slug}`}>
-                            {project.title}
-                          </TextLink>
-                        );
-                      })}
-                    </p>
-                  </li>
-                ))}
-              </ul>
-            </section>
+              <p className="mt-4 text-sm leading-relaxed text-muted">
+                {category.description}
+              </p>
+              <div className="mt-8 space-y-8">
+                {category.groups.map((group) => (
+                    <section key={group.id} aria-labelledby={`${group.id}-heading`}>
+                      <h4
+                        id={`${group.id}-heading`}
+                        className="text-sm font-medium text-foreground"
+                      >
+                        {group.title}
+                      </h4>
+                      <ul className="mt-3 flex flex-wrap gap-2">
+                        {group.items.map((skill) => (
+                          <SkillChip key={skill.name} skill={skill} />
+                        ))}
+                      </ul>
+                    </section>
+                  ))}
+              </div>
+            </article>
           );
         })}
       </div>
     </div>
+  );
+}
+
+function SkillChip({ skill }: { skill: Skill }) {
+  const status = skill.status === "unverified" ? null : statusLabel[skill.status];
+
+  return (
+    <li className="max-w-full border border-line bg-surface px-3 py-2 transition-colors hover:border-line-strong">
+      <p className="text-sm text-foreground">{skill.name}</p>
+      {status ? (
+        <p className="mt-1 font-mono text-[10px] tracking-[0.14em] text-accent uppercase">
+          {status}
+        </p>
+      ) : null}
+      {skill.note || skill.projectSlugs?.length ? (
+        <p className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted">
+          {skill.note ? <span>{skill.note}</span> : null}
+          {skill.projectSlugs?.map((slug) => {
+            const project = getProject(slug);
+            if (!project) return null;
+
+            return (
+              <TextLink key={slug} href={`/projects/${slug}`}>
+                {project.title}
+              </TextLink>
+            );
+          })}
+        </p>
+      ) : null}
+    </li>
   );
 }
 
@@ -114,7 +152,7 @@ function FilterButton({ pressed, onClick, children }: FilterButtonProps) {
       className={
         pressed
           ? "inline-flex min-h-11 items-center border border-accent bg-accent px-3 font-mono text-xs tracking-wide text-accent-foreground"
-          : "inline-flex min-h-11 items-center border border-line bg-surface px-3 font-mono text-xs tracking-wide text-muted transition-colors hover:border-line-strong hover:text-foreground"
+          : "inline-flex min-h-11 items-center border border-line bg-surface px-3 text-left font-mono text-xs tracking-wide text-muted transition-colors hover:border-line-strong hover:text-foreground"
       }
     >
       {children}

@@ -1,146 +1,366 @@
-import type { SkillGroup } from "@/types/portfolio";
+import type { SkillCategory } from "@/types/portfolio";
 
 /**
- * Tools named on the featured projects, or used to build this site.
- * This is not a proficiency scale.
+ * Four skill areas. Status comes from featured projects and this site.
+ * Unverified names stay in the taxonomy and are not presented as experience.
  */
-export const skillGroups: readonly SkillGroup[] = [
+export const skillCategories: readonly SkillCategory[] = [
   {
-    id: "languages",
-    title: "Languages",
-    items: [
+    id: "full-stack",
+    title: "Full-stack development",
+    description:
+      "Languages, interfaces, services, and delivery named on the client work or used to build this site.",
+    groups: [
       {
-        name: "TypeScript",
-        projectSlugs: [],
-        note: "This site",
+        id: "languages",
+        title: "Languages",
+        items: [
+          { name: "JavaScript", status: "project", note: "This site" },
+          { name: "TypeScript", status: "project", note: "This site" },
+          {
+            name: "Python",
+            status: "working",
+            projectSlugs: ["conversational-rag-assistant"],
+            note: "FastAPI, FAISS, and Sentence Transformers are named there",
+          },
+          { name: "SQL", status: "unverified" },
+          { name: "Java", status: "unverified" },
+        ],
       },
       {
-        name: "JavaScript",
-        projectSlugs: [],
-        note: "This site",
+        id: "frontend",
+        title: "Frontend",
+        items: [
+          {
+            name: "React",
+            status: "project",
+            projectSlugs: ["chola-power", "dharani-fitness"],
+            note: "This site",
+          },
+          {
+            name: "Next.js",
+            status: "project",
+            projectSlugs: ["chola-power", "dharani-fitness"],
+            note: "This site",
+          },
+          {
+            name: "HTML",
+            status: "project",
+            projectSlugs: ["chola-power", "dharani-fitness"],
+            note: "This site",
+          },
+          {
+            name: "CSS",
+            status: "project",
+            projectSlugs: ["chola-power", "dharani-fitness"],
+            note: "This site",
+          },
+          { name: "Tailwind CSS", status: "project", note: "This site" },
+          {
+            name: "Responsive design",
+            status: "project",
+            projectSlugs: ["chola-power", "dharani-fitness"],
+            note: "This site",
+          },
+        ],
       },
       {
-        name: "Python",
-        projectSlugs: ["conversational-rag-assistant"],
+        id: "backend",
+        title: "Backend",
+        items: [
+          {
+            name: "Node.js",
+            status: "working",
+            projectSlugs: ["chola-power", "dharani-fitness"],
+            note: "Next.js runtime",
+          },
+          {
+            name: "FastAPI",
+            status: "project",
+            projectSlugs: ["conversational-rag-assistant"],
+          },
+          {
+            name: "REST APIs",
+            status: "working",
+            projectSlugs: ["conversational-rag-assistant"],
+            note: "FastAPI",
+          },
+          {
+            name: "Authentication and authorization",
+            status: "project",
+            projectSlugs: ["dharani-fitness", "sportshub"],
+            note: "Google Authentication, Clerk, and RBAC",
+          },
+          {
+            name: "Razorpay",
+            status: "project",
+            projectSlugs: ["dharani-fitness", "sportshub"],
+          },
+        ],
+      },
+      {
+        id: "databases",
+        title: "Databases",
+        items: [
+          { name: "PostgreSQL", status: "unverified" },
+          {
+            name: "Neon",
+            status: "project",
+            projectSlugs: ["dharani-fitness"],
+          },
+          { name: "Supabase", status: "unverified" },
+          { name: "Prisma ORM", status: "unverified" },
+        ],
+      },
+      {
+        id: "deployment",
+        title: "Deployment",
+        items: [
+          {
+            name: "Vercel",
+            status: "project",
+            projectSlugs: ["dharani-fitness"],
+          },
+          {
+            name: "Docker",
+            status: "project",
+            projectSlugs: ["chola-power", "conversational-rag-assistant"],
+          },
+          {
+            name: "Cloudflare CDN",
+            status: "project",
+            projectSlugs: ["chola-power"],
+          },
+          { name: "Git", status: "working", note: "This repository" },
+          { name: "GitHub", status: "working", note: "This repository" },
+        ],
       },
     ],
   },
   {
-    id: "frontend",
-    title: "Frontend",
-    items: [
+    id: "analytics",
+    title: "Data analytics and visualization",
+    description:
+      "Exploratory analysis, charts, reporting, and the libraries used to prepare data.",
+    groups: [
       {
-        name: "React",
-        projectSlugs: ["chola-power", "dharani-fitness"],
-        note: "This site",
+        id: "analytics-work",
+        title: "Analytics",
+        items: [
+          { name: "Exploratory data analysis", status: "unverified" },
+          { name: "Data cleaning", status: "unverified" },
+          { name: "Data wrangling", status: "unverified" },
+          { name: "Statistical analysis", status: "unverified" },
+        ],
       },
       {
-        name: "Next.js",
-        projectSlugs: ["chola-power", "dharani-fitness"],
-        note: "This site",
+        id: "visualization",
+        title: "Visualization",
+        items: [
+          { name: "Matplotlib", status: "unverified" },
+          { name: "Seaborn", status: "unverified" },
+          { name: "Plotly", status: "unverified" },
+          { name: "Power BI", status: "unverified" },
+          { name: "Excel", status: "unverified" },
+        ],
       },
       {
-        name: "Tailwind CSS",
-        projectSlugs: [],
-        note: "This site",
+        id: "reporting",
+        title: "Reporting",
+        items: [
+          { name: "Dashboards", status: "unverified" },
+          { name: "KPI reporting", status: "unverified" },
+          { name: "Data storytelling", status: "unverified" },
+        ],
       },
       {
-        name: "HTML and CSS",
-        projectSlugs: ["chola-power", "dharani-fitness"],
-        note: "This site",
-      },
-      {
-        name: "Responsive layout",
-        projectSlugs: ["chola-power", "dharani-fitness"],
-        note: "This site",
-      },
-    ],
-  },
-  {
-    id: "backend",
-    title: "Backend and access",
-    items: [
-      {
-        name: "FastAPI",
-        projectSlugs: ["conversational-rag-assistant"],
-      },
-      {
-        name: "Google Authentication",
-        projectSlugs: ["dharani-fitness"],
-      },
-      {
-        name: "Clerk",
-        projectSlugs: ["sportshub"],
-      },
-      {
-        name: "RBAC",
-        projectSlugs: ["sportshub"],
-      },
-      {
-        name: "Razorpay",
-        projectSlugs: ["dharani-fitness", "sportshub"],
+        id: "preparation",
+        title: "Data preparation",
+        items: [
+          { name: "Pandas", status: "unverified" },
+          { name: "NumPy", status: "unverified" },
+          { name: "Data validation", status: "unverified" },
+        ],
       },
     ],
   },
   {
-    id: "data",
-    title: "Data",
-    items: [
+    id: "ai",
+    title: "AI, machine learning, and generative AI",
+    description:
+      "The conversational RAG assistant names the models and retrieval tools below. The multimodal project does not list a stack.",
+    groups: [
       {
-        name: "Neon Database",
-        projectSlugs: ["dharani-fitness"],
+        id: "machine-learning",
+        title: "Machine learning",
+        items: [
+          { name: "Scikit-learn", status: "unverified" },
+          { name: "Supervised learning", status: "unverified" },
+          { name: "Unsupervised learning", status: "unverified" },
+          { name: "Feature engineering", status: "unverified" },
+          { name: "Model evaluation", status: "unverified" },
+        ],
       },
       {
-        name: "Relational data models",
-        projectSlugs: ["sportshub"],
+        id: "deep-learning",
+        title: "Deep learning",
+        items: [
+          { name: "PyTorch", status: "unverified" },
+          { name: "Neural networks", status: "unverified" },
+          { name: "Computer vision", status: "unverified" },
+        ],
+      },
+      {
+        id: "nlp",
+        title: "Natural language processing",
+        items: [
+          { name: "Natural language processing", status: "unverified" },
+          {
+            name: "Hugging Face",
+            status: "project",
+            projectSlugs: ["conversational-rag-assistant"],
+          },
+        ],
+      },
+      {
+        id: "generative",
+        title: "Generative AI",
+        items: [
+          {
+            name: "Llama",
+            status: "project",
+            projectSlugs: ["conversational-rag-assistant"],
+          },
+          {
+            name: "Mistral",
+            status: "project",
+            projectSlugs: ["conversational-rag-assistant"],
+          },
+          {
+            name: "Retrieval-augmented generation",
+            status: "project",
+            projectSlugs: ["conversational-rag-assistant"],
+          },
+          {
+            name: "Embeddings",
+            status: "working",
+            projectSlugs: ["conversational-rag-assistant"],
+            note: "Sentence Transformers",
+          },
+          {
+            name: "Semantic search",
+            status: "working",
+            projectSlugs: ["conversational-rag-assistant"],
+            note: "FAISS",
+          },
+          {
+            name: "FAISS",
+            status: "project",
+            projectSlugs: ["conversational-rag-assistant"],
+          },
+          {
+            name: "Sentence Transformers",
+            status: "project",
+            projectSlugs: ["conversational-rag-assistant"],
+          },
+          { name: "Prompt engineering", status: "unverified" },
+        ],
+      },
+      {
+        id: "ai-apps",
+        title: "AI application development",
+        items: [
+          {
+            name: "FastAPI",
+            status: "project",
+            projectSlugs: ["conversational-rag-assistant"],
+          },
+          {
+            name: "LLM application",
+            status: "project",
+            projectSlugs: ["conversational-rag-assistant"],
+          },
+        ],
       },
     ],
   },
   {
-    id: "models",
-    title: "Models and retrieval",
-    items: [
+    id: "data-engineering",
+    title: "Data engineering",
+    description:
+      "Processing, pipelines, architecture, quality, and the infrastructure around them. Docker and Git stay under full-stack deployment.",
+    groups: [
       {
-        name: "Llama",
-        projectSlugs: ["conversational-rag-assistant"],
+        id: "processing",
+        title: "Data processing",
+        items: [
+          {
+            name: "Python",
+            status: "working",
+            projectSlugs: ["conversational-rag-assistant"],
+            note: "Named Python libraries on that project",
+          },
+          { name: "SQL", status: "unverified" },
+          { name: "Pandas", status: "unverified" },
+          { name: "NumPy", status: "unverified" },
+          { name: "Data transformation", status: "unverified" },
+        ],
       },
       {
-        name: "Mistral",
-        projectSlugs: ["conversational-rag-assistant"],
+        id: "pipelines",
+        title: "Pipelines",
+        items: [
+          { name: "ETL and ELT", status: "unverified" },
+          { name: "Batch processing", status: "unverified" },
+          { name: "Incremental loading", status: "unverified" },
+          { name: "API-based ingestion", status: "unverified" },
+        ],
       },
       {
-        name: "FAISS",
-        projectSlugs: ["conversational-rag-assistant"],
+        id: "architecture",
+        title: "Data architecture",
+        items: [
+          {
+            name: "Relational data models",
+            status: "project",
+            projectSlugs: ["sportshub"],
+          },
+          { name: "Data warehousing", status: "unverified" },
+          { name: "OLTP and OLAP", status: "unverified" },
+        ],
       },
       {
-        name: "Sentence Transformers",
-        projectSlugs: ["conversational-rag-assistant"],
+        id: "quality",
+        title: "Data quality",
+        items: [
+          { name: "Validation", status: "unverified" },
+          { name: "Profiling", status: "unverified" },
+          { name: "Error handling", status: "unverified" },
+          { name: "Logging", status: "unverified" },
+        ],
       },
       {
-        name: "Hugging Face",
-        projectSlugs: ["conversational-rag-assistant"],
+        id: "big-data",
+        title: "Big data",
+        items: [
+          { name: "Apache Spark", status: "unverified" },
+          { name: "PySpark", status: "unverified" },
+          { name: "Hadoop", status: "unverified" },
+          { name: "Distributed processing", status: "unverified" },
+        ],
       },
       {
-        name: "Retrieval-augmented generation",
-        projectSlugs: ["conversational-rag-assistant"],
-      },
-    ],
-  },
-  {
-    id: "delivery",
-    title: "Delivery",
-    items: [
-      {
-        name: "Docker",
-        projectSlugs: ["chola-power", "conversational-rag-assistant"],
+        id: "orchestration",
+        title: "Orchestration and streaming",
+        items: [
+          { name: "Apache Airflow", status: "unverified" },
+          { name: "Kafka", status: "unverified" },
+        ],
       },
       {
-        name: "Cloudflare CDN",
-        projectSlugs: ["chola-power"],
-      },
-      {
-        name: "Vercel",
-        projectSlugs: ["dharani-fitness"],
+        id: "infrastructure",
+        title: "Infrastructure",
+        items: [{ name: "Cloud data architecture", status: "unverified" }],
       },
     ],
   },

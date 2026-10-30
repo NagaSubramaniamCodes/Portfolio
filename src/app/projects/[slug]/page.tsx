@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/layout/container";
+import { BackButton } from "@/components/ui/back-button";
 import { TextLink } from "@/components/ui/text-link";
 import { getProject, ownershipLabel, projects } from "@/data/projects";
 import type { ProjectImage } from "@/types/portfolio";
@@ -42,7 +43,7 @@ function isPortrait(image: ProjectImage) {
 function ProjectFallback() {
   return (
     <Container className="py-16 md:py-24">
-      <TextLink href="/#work">Selected work</TextLink>
+      <BackButton fallback="/#work" />
       <p className="mt-10 text-muted">Loading project.</p>
     </Container>
   );
@@ -73,7 +74,7 @@ async function ProjectContent({ params }: ProjectPageProps) {
 
   return (
     <Container className="py-16 md:py-24">
-      <TextLink href="/#work">Selected work</TextLink>
+      <BackButton fallback="/#work" />
       <p className="mt-10 font-mono text-xs tracking-[0.16em] text-accent uppercase">
         {ownershipLabel[project.ownership]}
         <span className="text-muted"> · {project.category}</span>
@@ -104,11 +105,7 @@ async function ProjectContent({ params }: ProjectPageProps) {
             </li>
           ))}
         </ul>
-      ) : (
-        <p className="mt-8 font-mono text-xs text-muted">
-          No public link is available.
-        </p>
-      )}
+      ) : null}
 
       <div className="mt-16 max-w-3xl space-y-10">
         {sections.map((section) => (
@@ -177,6 +174,9 @@ async function ProjectContent({ params }: ProjectPageProps) {
             No image has been added.
           </p>
         )}
+      </div>
+      <div className="mt-16">
+        <BackButton fallback="/#work" />
       </div>
     </Container>
   );
