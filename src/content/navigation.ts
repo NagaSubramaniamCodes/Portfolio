@@ -2,11 +2,11 @@ import type { MetadataRoute } from "next";
 import type { NavItem } from "@/types/portfolio";
 
 export const mainNav: readonly NavItem[] = [
-  { label: "Work", href: "/#work" },
-  { label: "Services", href: "/#services" },
-  { label: "Expertise", href: "/#expertise" },
-  { label: "Credentials", href: "/#credentials" },
   { label: "About", href: "/#about" },
+  { label: "Skills", href: "/#skills" },
+  { label: "Selected Work", href: "/#work" },
+  { label: "Experience", href: "/#experience" },
+  { label: "Credentials", href: "/#credentials" },
   { label: "Contact", href: "/#contact" },
 ];
 
@@ -18,4 +18,7 @@ export const indexableRoutes: readonly {
   path: string;
   changeFrequency: ChangeFrequency;
   priority: number;
-}[] = [{ path: "/", changeFrequency: "monthly", priority: 1 }];
+}[] = [
+  { path: "/", changeFrequency: "monthly", priority: 1 },
+  { path: "/privacy", changeFrequency: "yearly", priority: 0.3 },
+];

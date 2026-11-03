@@ -66,10 +66,11 @@ async function ProjectContent({ params }: ProjectPageProps) {
   }
 
   const sections = project.caseStudy.filter((block) => block.body);
+  const media = project.images.filter((image) => Boolean(image.src));
   const rows: ProjectImage[][] = [];
 
-  for (let index = 0; index < project.images.length; index += 2) {
-    rows.push(project.images.slice(index, index + 2));
+  for (let index = 0; index < media.length; index += 2) {
+    rows.push(media.slice(index, index + 2));
   }
 
   return (
@@ -79,15 +80,23 @@ async function ProjectContent({ params }: ProjectPageProps) {
         {ownershipLabel[project.ownership]}
         <span className="text-muted"> · {project.category}</span>
       </p>
-      <h1 className="mt-5 max-w-3xl text-4xl font-medium tracking-tight text-foreground sm:text-5xl">
+      <h1 className="mt-5 max-w-3xl font-display text-4xl font-medium tracking-tight text-foreground sm:text-5xl">
         {project.title}
       </h1>
       {project.recognition ? (
         <p className="mt-4 text-accent">{project.recognition}</p>
       ) : null}
-      <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">
+      <p className="mt-6 max-w-2xl text-base leading-7 text-foreground-secondary sm:text-lg sm:leading-8">
         {project.summary}
       </p>
+      <div className="mt-8 max-w-2xl rounded-2xl border border-accent/25 bg-surface/60 p-5 sm:p-6">
+        <p className="font-mono text-[0.65rem] tracking-[0.16em] text-accent uppercase">
+          My contribution
+        </p>
+        <p className="mt-3 text-sm leading-7 text-foreground-secondary sm:text-[0.95rem]">
+          {project.contribution}
+        </p>
+      </div>
       {project.technologies.length > 0 ? (
         <p className="mt-6 font-mono text-xs leading-relaxed text-muted">
           {project.technologies.join(" · ")}
@@ -110,17 +119,19 @@ async function ProjectContent({ params }: ProjectPageProps) {
       <div className="mt-16 max-w-3xl space-y-10">
         {sections.map((section) => (
           <section key={section.id}>
-            <h2 className="text-2xl font-medium tracking-tight text-foreground">
+            <h2 className="font-display text-2xl font-medium tracking-tight text-foreground">
               {section.heading}
             </h2>
-            <p className="mt-4 leading-relaxed text-muted">{section.body}</p>
+            <p className="mt-4 max-w-2xl text-[0.98rem] leading-7 text-foreground-secondary">
+              {section.body}
+            </p>
           </section>
         ))}
       </div>
 
       <div className="mt-16">
-        <h2 className="text-2xl font-medium tracking-tight text-foreground">
-          Images
+        <h2 className="font-display text-2xl font-medium tracking-tight text-foreground">
+          Visuals
         </h2>
         {rows.length > 0 ? (
           <div className="mt-8 space-y-12">
@@ -150,10 +161,10 @@ async function ProjectContent({ params }: ProjectPageProps) {
                               ? "(min-width: 1024px) 288px, 70vw"
                               : "(min-width: 1024px) 720px, 100vw"
                           }
-                          className="h-auto w-full border border-line"
+                          className="h-auto w-full rounded-xl border border-border"
                         />
                         {image.concept ? (
-                          <p className="absolute top-3 left-3 border border-line bg-background/90 px-2 py-1 font-mono text-[10px] tracking-[0.14em] text-muted uppercase">
+                          <p className="absolute top-3 left-3 rounded-md border border-border bg-background/90 px-2 py-1 font-mono text-[10px] tracking-[0.14em] text-muted uppercase">
                             Concept visual
                           </p>
                         ) : null}
@@ -169,11 +180,13 @@ async function ProjectContent({ params }: ProjectPageProps) {
               </div>
             ))}
           </div>
-        ) : (
-          <p className="mt-8 border border-line bg-surface px-6 py-10 text-muted">
+        ) : null}
+
+        {rows.length === 0 ? (
+          <p className="mt-8 rounded-xl border border-border bg-surface px-6 py-10 text-muted">
             No image has been added.
           </p>
-        )}
+        ) : null}
       </div>
       <div className="mt-16">
         <BackButton fallback="/#work" />

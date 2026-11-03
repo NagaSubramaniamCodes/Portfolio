@@ -1,69 +1,91 @@
-import type { ReactNode } from "react";
 import Link from "next/link";
+import type { ButtonHTMLAttributes, ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
-const variants = {
-  primary:
-    "bg-accent text-accent-foreground hover:bg-accent-hover",
-  secondary:
-    "border border-line bg-transparent text-foreground hover:border-line-strong",
-} as const;
+type Variant = "primary" | "secondary" | "ghost";
 
-type ButtonProps = {
-  href: string;
-  children: ReactNode;
-  variant?: keyof typeof variants;
-  className?: string;
+const variants: Record<Variant, string> = {
+  primary:
+    "bg-accent text-accent-foreground hover:brightness-110 shadow-[0_0_0_1px_color-mix(in_srgb,var(--accent)_40%,transparent)]",
+  secondary:
+    "border border-border bg-surface text-foreground hover:bg-surface-hover",
+  ghost: "text-foreground-secondary hover:text-foreground hover:bg-surface",
 };
 
-function isSamePageHash(href: string) {
-  return href.startsWith("#");
+type BaseProps = {
+  children: ReactNode;
+  className?: string;
+  variant?: Variant;
+};
+
+type ButtonAsButton = BaseProps &
+  Omit<ButtonHTMLAttributes<HTMLButtonElement>, "className" | "children"> & {
+    href?: undefined;
+  };
+
+type ButtonAsLink = BaseProps & {
+  href: string;
+  external?: boolean;
+  newTab?: boolean;
+};
+
+function isNativeHref(href: string) {
+  return (
+    href.startsWith("http") ||
+    href.startsWith("mailto:") ||
+    href.startsWith("tel:") ||
+    href.endsWith(".pdf")
+  );
 }
 
-export function Button({
-  href,
-  children,
-  variant = "primary",
-  className,
-}: ButtonProps) {
+function opensInNewTab(href: string, external?: boolean, newTab?: boolean) {
+  if (newTab || external) return true;
+  if (href.startsWith("http") || href.endsWith(".pdf")) return true;
+  return false;
+}
+
+export function Button(props: ButtonAsButton | ButtonAsLink) {
+  const { children, className, variant = "primary" } = props;
   const classes = cn(
-    "inline-flex min-h-11 items-center justify-center px-5 text-sm font-medium tracking-wide transition-colors",
+    "inline-flex min-h-11 items-center justify-center gap-2 rounded-md px-5 text-sm font-medium transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0",
     variants[variant],
     className,
   );
 
-  if (href.startsWith("mailto:")) {
+  if ("href" in props && props.href) {
+    const href = props.href;
+    if (isNativeHref(href) || props.external || props.newTab) {
+      const newTab = opensInNewTab(href, props.external, props.newTab);
+      return (
+        <a
+          href={href}
+          className={classes}
+          {...(newTab
+            ? { target: "_blank", rel: "noopener noreferrer" }
+            : {})}
+        >
+          {children}
+        </a>
+      );
+    }
     return (
-      <a href={href} className={classes}>
+      <Link href={href} className={classes}>
         {children}
-      </a>
+      </Link>
     );
   }
 
-  if (href.startsWith("http")) {
-    return (
-      <a
-        href={href}
-        className={classes}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {children}
-      </a>
-    );
-  }
-
-  if (isSamePageHash(href)) {
-    return (
-      <a href={href} className={classes}>
-        {children}
-      </a>
-    );
-  }
+  const {
+    children: _children,
+    className: _className,
+    variant: _variant,
+    href: _href,
+    ...rest
+  } = props as ButtonAsButton & { href?: undefined };
 
   return (
-    <Link href={href} className={classes}>
+    <button type={rest.type ?? "button"} className={classes} {...rest}>
       {children}
-    </Link>
+    </button>
   );
 }

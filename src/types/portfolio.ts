@@ -13,6 +13,8 @@ export type ProjectImage = {
   height?: number;
   /** Original illustration, not a screenshot of the product. */
   concept?: boolean;
+  /** Asset not yet supplied — render a placeholder. */
+  placeholder?: boolean;
 };
 
 /**
@@ -31,41 +33,37 @@ export type Project = {
   category: string;
   ownership: Ownership;
   summary: string;
+  contribution: string;
   technologies: readonly string[];
   links: readonly ProjectLink[];
   images: readonly ProjectImage[];
   caseStudy: readonly CaseStudyBlock[];
   recognition?: string;
+  featured?: boolean;
+  featuredOrder?: number;
+  group?:
+    | "flagship"
+    | "ai-ml"
+    | "computer-vision"
+    | "iot"
+    | "foundations"
+    | "freelance";
 };
 
-export type Service = {
-  id: string;
-  title: string;
-  description: string;
-};
-
-export type SkillStatus = "project" | "working" | "unverified";
+export type SkillStatus = "project" | "working" | "learning";
 
 export type Skill = {
   name: string;
   status: SkillStatus;
-  /** Slugs of projects that support this skill. Empty for unverified skills. */
   projectSlugs?: readonly string[];
-  /** Short evidence note. Not a proficiency claim. */
   note?: string;
-};
-
-export type SkillSubgroup = {
-  id: string;
-  title: string;
-  items: readonly Skill[];
 };
 
 export type SkillCategory = {
   id: string;
   title: string;
   description: string;
-  groups: readonly SkillSubgroup[];
+  items: readonly Skill[];
 };
 
 export type Credential = {
@@ -73,8 +71,24 @@ export type Credential = {
   label: string;
   title: string;
   detail: string;
-  /** Internal note. Do not render. */
+  status?: "active" | "historical";
   todo?: string;
+};
+
+export type ExperienceItem = {
+  id: string;
+  kind: "freelance" | "product" | "collaboration" | "education" | "training";
+  title: string;
+  org: string;
+  period: string;
+  bullets: readonly string[];
+};
+
+export type Achievement = {
+  id: string;
+  label: string;
+  title: string;
+  detail: string;
 };
 
 export type NavItem = {

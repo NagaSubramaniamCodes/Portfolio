@@ -18,8 +18,8 @@ export function createShareImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#0B0D0F",
-          color: "#F4F5F6",
+          background: "#080D0B",
+          color: "#F4F7F4",
           padding: "72px",
         }}
       >
@@ -29,18 +29,19 @@ export function createShareImage() {
             fontSize: 22,
             letterSpacing: "0.16em",
             textTransform: "uppercase",
-            color: "#B8FF65",
+            color: "#22C55E",
           }}
         >
-          Freelance portfolio
+          AI × Human portfolio
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div
             style={{
               display: "flex",
-              fontSize: 76,
+              fontSize: 72,
+              fontWeight: 600,
+              letterSpacing: "-0.04em",
               lineHeight: 1.05,
-              letterSpacing: "-0.03em",
             }}
           >
             {site.name}
@@ -48,17 +49,17 @@ export function createShareImage() {
           <div
             style={{
               display: "flex",
-              marginTop: 28,
-              fontSize: 34,
-              color: "#A7ADB5",
+              marginTop: 24,
+              fontSize: 28,
+              color: "#A7B5AA",
+              maxWidth: 900,
             }}
           >
             {site.role}
           </div>
         </div>
-        <div style={{ display: "flex", height: 2, background: "#B8FF65" }} />
       </div>
     ),
-    { ...shareImageSize },
+    shareImageSize,
   );
 }

@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Nagasubramaniam G — Portfolio
 
-## Getting Started
+Premium AI × Human personal portfolio built with Next.js, TypeScript, and Tailwind CSS.
 
-First, run the development server:
+## Stack
+
+- Next.js 16 + React 19 + TypeScript
+- Tailwind CSS v4 design tokens
+- Motion (Framer Motion)
+- `next-themes` for appearance + custom palette selector (4 palettes × dark/light)
+
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Copy `.env.example` to `.env.local` and set `NEXT_PUBLIC_SITE_URL`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Contact form
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The form posts to `/api/contact` with honeypot + basic rate limiting.
 
-## Learn More
+Configure **one** delivery path in `.env.local`:
 
-To learn more about Next.js, take a look at the following resources:
+- `CONTACT_WEBHOOK_URL`, or
+- `RESEND_API_KEY` + `CONTACT_TO_EMAIL` (+ optional `CONTACT_FROM_EMAIL`)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Until configured, the UI reports that delivery is pending and LinkedIn remains the fallback.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Resume
 
-## Deploy on Vercel
+Place the AI/ML resume PDF at `public/resume/nagasubramaniam-g-aiml.pdf` and set `resumeReady: true` in `src/content/site.ts`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deploy (Cloudflare Pages preferred)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Push this repository to GitHub under Nagasubramaniam G’s account.
+2. Create a Cloudflare Pages project linked to the repo.
+3. Build command: `npm run build`
+4. Output/deployment: follow the Next.js Cloudflare adapter docs for your Next.js version, or use `@cloudflare/next-on-pages` / OpenNext Cloudflare when configuring production.
+5. Set environment variables from `.env.example` in the Cloudflare dashboard.
+6. Point `nagasubramaniamg.dev` (or `.com`) DNS to Cloudflare once the domain is owned.
+
+Do not silently switch the intended hosting platform to Vercel unless Cloudflare is unavailable.
+
+## Content sources
+
+Verified copy comes from:
+
+- Portfolio website final answers
+- Project portfolio descriptions
+
+Do not invent metrics, testimonials, employment history, or screenshots.
