@@ -4,6 +4,7 @@ import type { NavItem } from "@/types/portfolio";
 export const mainNav: readonly NavItem[] = [
   { label: "About", href: "/#about" },
   { label: "Skills", href: "/#skills" },
+  { label: "Services", href: "/#services" },
   { label: "Selected Work", href: "/#work" },
   { label: "Experience", href: "/#experience" },
   { label: "Credentials", href: "/#credentials" },

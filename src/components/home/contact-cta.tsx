@@ -15,17 +15,52 @@ import { Reveal } from "@/components/motion/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
 import { site } from "@/content/site";
+import { cn } from "@/lib/cn";
 
 type FormState = "idle" | "submitting" | "success" | "error" | "pending-config";
+
+type FieldErrors = {
+  name?: string;
+  email?: string;
+  message?: string;
+};
+
+function validateFields(input: {
+  name: string;
+  email: string;
+  message: string;
+}): FieldErrors {
+  const errors: FieldErrors = {};
+  if (!input.name.trim()) errors.name = "Name is required.";
+  if (!input.email.trim()) {
+    errors.email = "Email is required.";
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.email.trim())) {
+    errors.email = "Enter a valid email address.";
+  }
+  if (!input.message.trim()) errors.message = "Message is required.";
+  return errors;
+}
 
 export function ContactCta() {
   const [state, setState] = useState<FormState>("idle");
   const [message, setMessage] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = event.currentTarget;
     const data = new FormData(form);
+    const name = String(data.get("name") ?? "");
+    const email = String(data.get("email") ?? "");
+    const body = String(data.get("message") ?? "");
+
+    const errors = validateFields({ name, email, message: body });
+    setFieldErrors(errors);
+    if (Object.keys(errors).length > 0) {
+      setState("error");
+      setMessage("Please fix the highlighted fields.");
+      return;
+    }
 
     setState("submitting");
     setMessage("");
@@ -35,9 +70,9 @@ export function ContactCta() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: data.get("name"),
-          email: data.get("email"),
-          message: data.get("message"),
+          name,
+          email,
+          message: body,
           company: data.get("company"),
         }),
       });
@@ -52,7 +87,7 @@ export function ContactCta() {
         setState("pending-config");
         setMessage(
           payload.error ??
-            "Contact delivery is awaiting server configuration. Please reach out on LinkedIn for now.",
+            "Contact delivery is awaiting server configuration. Please reach out on LinkedIn, email, or WhatsApp.",
         );
         return;
       }
@@ -65,12 +100,15 @@ export function ContactCta() {
 
       setState("success");
       setMessage("Message received. I usually reply within two business days.");
+      setFieldErrors({});
       form.reset();
     } catch {
       setState("error");
-      setMessage("Network error. Please try again or use LinkedIn.");
+      setMessage("Network error. Please try email, WhatsApp, or LinkedIn.");
     }
   }
+
+  const busy = state === "submitting";
 
   return (
     <section id="contact" className="scroll-mt-24 border-t border-accent/20 py-16 md:py-24">
@@ -84,7 +122,7 @@ export function ContactCta() {
                   icon={Send}
                   eyebrow="Contact"
                   title="Let’s talk about a role or project"
-                  description="Hiring managers and founders: share the role, stack, or problem. I usually reply within two business days."
+                  description="Hiring managers: share the role and stack. Founders and clients: share the website, storefront, or GenAI scope. I usually reply within two business days."
                 />
                 <p className="mt-6 inline-flex items-center gap-2 rounded-full border border-accent/40 bg-background/60 px-4 py-2 font-mono text-xs tracking-wide text-accent">
                   <span className="relative flex size-2">
@@ -164,9 +202,8 @@ export function ContactCta() {
                   </Button>
                 </div>
                 <p className="mt-5 max-w-md text-sm leading-relaxed text-foreground-secondary">
-                  Email, call, or WhatsApp directly — or use the form. I usually
-                  reply within two business days. LinkedIn remains a public
-                  fallback.
+                  Prefer the form for structured enquiries, or reach out
+                  directly by email, phone, or WhatsApp.
                 </p>
               </div>
 
@@ -194,8 +231,23 @@ export function ContactCta() {
                       name="name"
                       required
                       maxLength={120}
-                      className="mt-2 w-full rounded-lg border border-border bg-surface px-3 py-3 text-sm text-foreground outline-none transition-colors focus-visible:border-accent/50 focus-visible:ring-2 focus-visible:ring-focus"
+                      aria-invalid={Boolean(fieldErrors.name)}
+                      aria-describedby={
+                        fieldErrors.name ? "contact-name-error" : undefined
+                      }
+                      className={cn(
+                        "mt-2 w-full rounded-lg border bg-surface px-3 py-3 text-sm text-foreground outline-none transition-colors focus-visible:border-accent/50 focus-visible:ring-2 focus-visible:ring-focus",
+                        fieldErrors.name ? "border-red-500/70" : "border-border",
+                      )}
                     />
+                    {fieldErrors.name ? (
+                      <p
+                        id="contact-name-error"
+                        className="mt-1.5 text-xs text-red-400"
+                      >
+                        {fieldErrors.name}
+                      </p>
+                    ) : null}
                   </label>
                   <label className="block">
                     <span className="font-mono text-[0.65rem] tracking-[0.16em] text-muted uppercase">
@@ -206,8 +258,25 @@ export function ContactCta() {
                       type="email"
                       required
                       maxLength={200}
-                      className="mt-2 w-full rounded-lg border border-border bg-surface px-3 py-3 text-sm text-foreground outline-none transition-colors focus-visible:border-accent/50 focus-visible:ring-2 focus-visible:ring-focus"
+                      aria-invalid={Boolean(fieldErrors.email)}
+                      aria-describedby={
+                        fieldErrors.email ? "contact-email-error" : undefined
+                      }
+                      className={cn(
+                        "mt-2 w-full rounded-lg border bg-surface px-3 py-3 text-sm text-foreground outline-none transition-colors focus-visible:border-accent/50 focus-visible:ring-2 focus-visible:ring-focus",
+                        fieldErrors.email
+                          ? "border-red-500/70"
+                          : "border-border",
+                      )}
                     />
+                    {fieldErrors.email ? (
+                      <p
+                        id="contact-email-error"
+                        className="mt-1.5 text-xs text-red-400"
+                      >
+                        {fieldErrors.email}
+                      </p>
+                    ) : null}
                   </label>
                   <label className="block">
                     <span className="font-mono text-[0.65rem] tracking-[0.16em] text-muted uppercase">
@@ -218,9 +287,28 @@ export function ContactCta() {
                       required
                       rows={5}
                       maxLength={4000}
-                      placeholder="Role, team, location, or project scope…"
-                      className="mt-2 w-full resize-y rounded-lg border border-border bg-surface px-3 py-3 text-sm leading-relaxed text-foreground outline-none transition-colors focus-visible:border-accent/50 focus-visible:ring-2 focus-visible:ring-focus"
+                      placeholder="Role details, or website / GenAI project scope…"
+                      aria-invalid={Boolean(fieldErrors.message)}
+                      aria-describedby={
+                        fieldErrors.message
+                          ? "contact-message-error"
+                          : undefined
+                      }
+                      className={cn(
+                        "mt-2 w-full resize-y rounded-lg border bg-surface px-3 py-3 text-sm leading-relaxed text-foreground outline-none transition-colors focus-visible:border-accent/50 focus-visible:ring-2 focus-visible:ring-focus",
+                        fieldErrors.message
+                          ? "border-red-500/70"
+                          : "border-border",
+                      )}
                     />
+                    {fieldErrors.message ? (
+                      <p
+                        id="contact-message-error"
+                        className="mt-1.5 text-xs text-red-400"
+                      >
+                        {fieldErrors.message}
+                      </p>
+                    ) : null}
                   </label>
                 </div>
 
@@ -228,10 +316,10 @@ export function ContactCta() {
                   <Magnetic className="w-full sm:w-auto">
                     <Button
                       type="submit"
-                      disabled={state === "submitting"}
+                      disabled={busy || state === "success"}
                       className="w-full min-w-[10rem] sm:w-auto"
                     >
-                      {state === "submitting" ? (
+                      {busy ? (
                         <>
                           <LoaderCircle
                             className="size-4 animate-spin"

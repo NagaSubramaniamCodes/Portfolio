@@ -22,7 +22,7 @@ export function About() {
                     fill
                     sizes="(max-width: 1024px) 192px, 208px"
                     className="object-cover object-top"
-                    priority
+                    loading="lazy"
                   />
                 </div>
               </div>

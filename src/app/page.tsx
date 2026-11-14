@@ -6,6 +6,7 @@ import { Experience } from "@/components/home/experience";
 import { Hero } from "@/components/home/hero";
 import { RecruiterRail } from "@/components/home/recruiter-rail";
 import { SelectedWork } from "@/components/home/selected-work";
+import { Services } from "@/components/home/services";
 import { SkillBoard } from "@/components/home/skill-board";
 
 export const metadata: Metadata = {
@@ -21,6 +22,7 @@ export default function HomePage() {
       <RecruiterRail />
       <About />
       <SkillBoard />
+      <Services />
       <SelectedWork />
       <Experience />
       <Credentials />

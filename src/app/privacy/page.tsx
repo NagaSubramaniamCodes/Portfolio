@@ -30,9 +30,9 @@ export default function PrivacyPage() {
           contact options.
         </p>
         <p>
-          Privacy-friendly analytics may measure page views, case-study views,
-          resume downloads, contact submissions, and outbound GitHub or LinkedIn
-          clicks. Advertising trackers are not used.
+          No analytics or advertising trackers are installed on this site today.
+          If privacy-friendly analytics are added later, this notice will be
+          updated before they are enabled.
         </p>
         <p>
           External links (GitHub, LinkedIn, live client sites) are governed by

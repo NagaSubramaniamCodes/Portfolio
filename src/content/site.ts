@@ -8,7 +8,7 @@ export const site = {
   description:
     "Portfolio of Nagasubramaniam G — AI Engineer, GenAI / LLM-RAG developer, and full-stack engineer in Chennai, India. Entry-level / junior hire profile with production freelance sites, RAG systems, computer vision, and SaaS projects.",
   availability:
-    "Open to AI/ML, GenAI, and Applied AI Engineering opportunities.",
+    "Open to AI/ML roles and scoped freelance web / GenAI projects.",
   location: "Chennai, Tamil Nadu, India",
   responsePromise: "I usually reply within two business days.",
   email: "nagasubramaniamg@gmail.com",

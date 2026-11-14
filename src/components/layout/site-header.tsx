@@ -10,6 +10,7 @@ import { BackButton } from "@/components/ui/back-button";
 import { mainNav } from "@/content/navigation";
 import { site } from "@/content/site";
 import { cn } from "@/lib/cn";
+import { THEME_SWITCHING_ENABLED } from "@/themes/palettes";
 
 function sectionIdFromHref(href: string) {
   return href.replace(/^\/#/, "").replace(/^#/, "");
@@ -171,9 +172,11 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <div className="hidden md:block">
-            <ThemeControls compact />
-          </div>
+          {THEME_SWITCHING_ENABLED ? (
+            <div className="hidden md:block">
+              <ThemeControls compact />
+            </div>
+          ) : null}
           <a
             href={site.resumePath}
             target="_blank"
@@ -238,10 +241,32 @@ export function SiteHeader() {
                   </Link>
                 );
               })}
+              <div className="mt-3 flex flex-col gap-2 border-t border-border pt-3 lg:hidden">
+                <a
+                  href={site.resumePath}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={closeMenu}
+                  className="inline-flex min-h-11 items-center justify-center gap-1.5 rounded-md border border-accent/40 bg-accent/10 px-3 text-sm font-medium text-accent hover:bg-accent/15"
+                >
+                  <Download className="size-3.5" aria-hidden="true" />
+                  Resume
+                  <span className="sr-only"> (opens in a new tab)</span>
+                </a>
+                <Link
+                  href="/#contact"
+                  onClick={() => onNavClick("/#contact")}
+                  className="inline-flex min-h-11 items-center justify-center rounded-md bg-accent px-3 text-sm font-medium text-accent-foreground hover:brightness-110"
+                >
+                  Contact
+                </Link>
+              </div>
             </nav>
-            <div className="border-t border-border px-6 py-4 md:hidden">
-              <ThemeControls />
-            </div>
+            {THEME_SWITCHING_ENABLED ? (
+              <div className="border-t border-border px-6 py-4 md:hidden">
+                <ThemeControls />
+              </div>
+            ) : null}
           </motion.div>
         ) : null}
       </AnimatePresence>
