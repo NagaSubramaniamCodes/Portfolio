@@ -1,10 +1,34 @@
 "use client";
 
+import Image from "next/image";
 import { BadgeCheck } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { achievements, credentials } from "@/data/credentials";
+
+const credentialProofs = [
+  {
+    src: "/images/credentials/nptel-motivated-learner.png",
+    alt: "NPTEL Motivated Learner certificate of appreciation for Nagasubramaniam G, JAN–APR 2025.",
+    label: "NPTEL Motivated Learner",
+  },
+  {
+    src: "/images/credentials/nptel-enthusiast.png",
+    alt: "NPTEL Enthusiast certificate of appreciation for Nagasubramaniam G, JUL–DEC 2024.",
+    label: "NPTEL Enthusiast",
+  },
+  {
+    src: "/images/credentials/azure-ai-fundamentals.png",
+    alt: "Microsoft Certified Azure AI Fundamentals certificate for Nagasubramaniam G.",
+    label: "Azure AI Fundamentals",
+  },
+  {
+    src: "/images/credentials/azure-fundamentals.png",
+    alt: "Microsoft Certified Azure Fundamentals certificate for Nagasubramaniam G.",
+    label: "Azure Fundamentals",
+  },
+] as const;
 
 export function Credentials() {
   return (
@@ -18,7 +42,7 @@ export function Credentials() {
             icon={BadgeCheck}
             eyebrow="Credentials"
             title="Recognition, research, and certifications"
-            description="Only verified awards, patent attribution, publication authorship, and credentials from the reference records."
+            description="Verified awards, patent attribution, publication authorship, Microsoft/NASSCOM/Oracle credentials, and NPTEL recognition — only claims backed by certificate records."
           />
         </Reveal>
 
@@ -40,6 +64,37 @@ export function Credentials() {
           ))}
         </Stagger>
 
+        <Reveal className="mt-12" delay={0.05}>
+          <h3 className="font-display text-2xl tracking-tight text-foreground">
+            Certificate proof
+          </h3>
+          <p className="mt-2 max-w-2xl text-sm text-muted">
+            Scans of key Microsoft and NPTEL appreciation certificates. Course
+            PDFs remain on file for verification.
+          </p>
+        </Reveal>
+
+        <Stagger className="mt-6 grid gap-4 sm:grid-cols-2">
+          {credentialProofs.map((proof) => (
+            <StaggerItem key={proof.src}>
+              <figure className="hover-lift overflow-hidden rounded-2xl border border-border bg-surface/40">
+                <div className="relative aspect-[4/3] bg-background">
+                  <Image
+                    src={proof.src}
+                    alt={proof.alt}
+                    fill
+                    className="object-contain p-2"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                </div>
+                <figcaption className="border-t border-border px-4 py-3 font-mono text-[0.65rem] tracking-[0.14em] text-muted uppercase">
+                  {proof.label}
+                </figcaption>
+              </figure>
+            </StaggerItem>
+          ))}
+        </Stagger>
+
         <Stagger className="mt-8 grid gap-3 sm:grid-cols-2">
           {credentials.map((item) => (
             <StaggerItem key={item.id}>
@@ -50,7 +105,7 @@ export function Credentials() {
                   </p>
                   {item.status === "historical" ? (
                     <span className="rounded-full border border-border px-2 py-0.5 font-mono text-[0.6rem] text-foreground-secondary uppercase">
-                      Historical
+                      Time-bounded
                     </span>
                   ) : null}
                 </div>

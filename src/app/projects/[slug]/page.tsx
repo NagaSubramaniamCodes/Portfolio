@@ -129,11 +129,11 @@ async function ProjectContent({ params }: ProjectPageProps) {
         ))}
       </div>
 
-      <div className="mt-16">
-        <h2 className="font-display text-2xl font-medium tracking-tight text-foreground">
-          Visuals
-        </h2>
-        {rows.length > 0 ? (
+      {rows.length > 0 ? (
+        <div className="mt-16">
+          <h2 className="font-display text-2xl font-medium tracking-tight text-foreground">
+            Visuals
+          </h2>
           <div className="mt-8 space-y-12">
             {rows.map((row) => (
               <div
@@ -180,14 +180,8 @@ async function ProjectContent({ params }: ProjectPageProps) {
               </div>
             ))}
           </div>
-        ) : null}
-
-        {rows.length === 0 ? (
-          <p className="mt-8 rounded-xl border border-border bg-surface px-6 py-10 text-muted">
-            No image has been added.
-          </p>
-        ) : null}
-      </div>
+        </div>
+      ) : null}
       <div className="mt-16">
         <BackButton fallback="/#work" />
       </div>

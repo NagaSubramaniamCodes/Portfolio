@@ -22,12 +22,31 @@ export function personJsonLd() {
     knowsAbout: [
       "Artificial Intelligence",
       "Machine Learning",
+      "Deep Learning",
       "Generative AI",
-      "LLM",
-      "RAG",
+      "Large Language Models",
+      "Retrieval Augmented Generation",
+      "AI Agents",
+      "Natural Language Processing",
+      "Computer Vision",
+      "Object Detection",
+      "Predictive Maintenance",
       "Full-Stack Development",
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Python",
+      "FastAPI",
+      "PostgreSQL",
+      "Docker",
+      "SaaS Development",
+      "E-commerce Development",
       ...getFeaturedProjects().map((project) => project.title),
     ],
+    alumniOf: {
+      "@type": "CollegeOrUniversity",
+      name: "Kalasalingam Academy of Research and Education",
+    },
   };
 }
 

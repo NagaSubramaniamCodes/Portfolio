@@ -40,7 +40,7 @@ export function SelectedWork() {
             icon={FolderKanban}
             eyebrow="Selected Work"
             title="Evidence over claims"
-            description="Flagship case studies lead — including live freelance delivery. Supporting work is curated by domain. Solo, freelance, and team ownership stay explicit."
+            description="Flagship case studies lead — including live freelance delivery. Additional team and research projects follow with written case studies. Solo, freelance, and team ownership stay explicit."
           />
         </Reveal>
 

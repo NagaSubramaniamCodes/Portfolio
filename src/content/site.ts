@@ -6,7 +6,7 @@ export const site = {
   tagline:
     "I build practical AI-powered applications and full-stack products, combining machine learning, generative AI, data and software engineering to solve real-world problems.",
   description:
-    "Portfolio of Nagasubramaniam G — AI/ML Engineer building practical GenAI systems, LLM/RAG applications, and production-ready full-stack products. Based in Chennai, India.",
+    "Portfolio of Nagasubramaniam G — AI Engineer, GenAI / LLM-RAG developer, and full-stack engineer in Chennai, India. Entry-level / junior hire profile with production freelance sites, RAG systems, computer vision, and SaaS projects.",
   availability:
     "Open to AI/ML, GenAI, and Applied AI Engineering opportunities.",
   location: "Chennai, Tamil Nadu, India",

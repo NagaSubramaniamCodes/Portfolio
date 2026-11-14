@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { SkipLink } from "@/components/layout/skip-link";
 import { MotionProvider } from "@/components/motion/motion-provider";
 import { ThemeProvider } from "@/components/theme/theme-provider";
+import { seoKeywords } from "@/content/seo";
 import { site } from "@/content/site";
 import { getSiteUrl } from "@/lib/site-url";
 import {
@@ -42,18 +43,11 @@ export const metadata: Metadata = {
   applicationName: site.name,
   authors: [{ name: site.name, url: site.linkedin }],
   creator: site.name,
-  keywords: [
-    "Nagasubramaniam G",
-    "AI/ML Engineer Chennai",
-    "GenAI Engineer Chennai",
-    "LLM RAG Developer",
-    "Applied AI Engineer",
-    "SportsHub",
-    "Chola Power",
-  ],
+  keywords: [...seoKeywords],
+  category: "technology",
   openGraph: {
     type: "website",
-    locale: "en",
+    locale: "en_IN",
     url: siteUrl,
     siteName: site.name,
     title,
@@ -67,8 +61,16 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
   alternates: {
+    canonical: siteUrl,
     types: {
       "application/ld+json": "/schema/person",
     },
