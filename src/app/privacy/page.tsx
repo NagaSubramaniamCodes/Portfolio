@@ -30,9 +30,9 @@ export default function PrivacyPage() {
           contact options.
         </p>
         <p>
-          No analytics or advertising trackers are installed on this site today.
-          If privacy-friendly analytics are added later, this notice will be
-          updated before they are enabled.
+          Privacy-friendly analytics from Vercel measure aggregate page views
+          and basic performance. Advertising trackers are not used, and the
+          contact form data is not sent to analytics.
         </p>
         <p>
           External links (GitHub, LinkedIn, live client sites) are governed by
